@@ -70,3 +70,4 @@ def batch_hack_captcha():
 if __name__ == '__main__':
     batch_hack_captcha()
     print('end...')
+    pass
