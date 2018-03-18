@@ -60,6 +60,22 @@ def rgb2gray(img):
         return img
 
 
+def increase_contrast(image):
+    """
+    提升灰度图片对比度
+    :param image: 灰度图像数据
+    :return: 高对比度数据
+    """
+    max_value = image.max()
+    min_value = image.min()
+    d_value = max_value - min_value
+
+    image -= min_value
+    image /= d_value
+
+    return image
+
+
 def text2vec(text):
     """
     文本转向量

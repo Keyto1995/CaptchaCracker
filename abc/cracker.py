@@ -11,7 +11,7 @@ import tensorflow as tf
 from config.cfg import MAX_CAPTCHA, CHAR_SET_LEN, ckpt_path, IMAGE_WIDTH, IMAGE_HEIGHT
 from data.gen_captcha import gen_captcha_text_and_image
 from nn.cnn import crack_captcha_cnn, X, keep_prob
-from utils.utils import rgb2gray, vec2text
+from utils.utils import rgb2gray, vec2text, increase_contrast
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
@@ -54,7 +54,9 @@ def batch_hack_captcha():
         for i in range(task_cnt):
             text, image = gen_captcha_text_and_image(size=(IMAGE_WIDTH, IMAGE_HEIGHT))
             image = rgb2gray(image)
-            image = image.flatten() / 255
+            #  提高灰度图片对比度
+            image = increase_contrast(image)
+            image = image.flatten()
             predict_text = crack_function(sess, predict, image)
             if text == predict_text:
                 right_cnt += 1
