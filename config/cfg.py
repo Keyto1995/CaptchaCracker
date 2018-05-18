@@ -16,7 +16,7 @@ IMAGE_HEIGHT = 64
 IMAGE_WIDTH = 128
 MAX_CAPTCHA = 4
 
-gen_char_set = number  # + Alphabet  + alphabet + '_'
+gen_char_set = number + Alphabet  # + alphabet + '_'
 
 CHAR_SET_LEN = len(gen_char_set)
 
