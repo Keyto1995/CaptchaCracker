@@ -33,7 +33,7 @@ def random_captcha_text(char_set=number + alphabet + Alphabet, captcha_size=MAX_
 
 def gen_captcha_text_and_image(char_set=gen_char_set, size=(160, 64)):
     """
-    使用ImageCaptcha库生成验证码
+    使用ImageCaptcha库生成验证码样本
     :return:(captcha_text, captcha_image)
     """
     image = ImageCaptcha(width=size[0], height=size[1])

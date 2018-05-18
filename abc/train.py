@@ -22,7 +22,7 @@ def train_crack_captcha_cnn():
     predict = tf.reshape(output, [-1, MAX_CAPTCHA, CHAR_SET_LEN])
     label = tf.reshape(Y, [-1, MAX_CAPTCHA, CHAR_SET_LEN])
 
-    max_idx_p = tf.argmax(predict, 2)  # shape:batch_size,4,nb_cls
+    max_idx_p = tf.argmax(predict, 2)
     max_idx_l = tf.argmax(label, 2)
     correct_pred = tf.equal(max_idx_p, max_idx_l)
 

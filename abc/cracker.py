@@ -18,7 +18,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 def crack_function(sess, predict, captcha_image):
     """
-    装载完成识别内容后，
+    装载完成识别内容后，输出预测文本
     :param sess:
     :param predict:
     :param captcha_image:
@@ -45,14 +45,14 @@ def batch_hack_captcha():
 
     saver = tf.train.Saver()
     with tf.Session() as sess:
-        # saver = tf.train.import_meta_graph(save_model + ".meta")
-        saver.restore(sess, tf.train.latest_checkpoint(ckpt_path))
+        saver.restore(sess, tf.train.latest_checkpoint(ckpt_path))  # 加载最后的模型参数设置
 
-        stime = time.time()
+        stime = time.time()  # 开始时间
         task_cnt = 1000
         right_cnt = 0
         for i in range(task_cnt):
             text, image = gen_captcha_text_and_image(size=(IMAGE_WIDTH, IMAGE_HEIGHT))
+            #  彩色图片转为灰度图片
             image = rgb2gray(image)
             #  提高灰度图片对比度
             image = increase_contrast(image)
@@ -63,7 +63,6 @@ def batch_hack_captcha():
             else:
                 print("标记: {}  预测: {}".format(text, predict_text))
                 pass
-                # print("标记: {}  预测: {}".format(text, predict_text))
 
         print('task:', task_cnt, ' cost time:', (time.time() - stime), 's')
         print('right/total-----', right_cnt, '/', task_cnt)
